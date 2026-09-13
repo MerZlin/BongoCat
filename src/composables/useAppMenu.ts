@@ -94,6 +94,13 @@ export function useAppMenu() {
 
   const getExitMenu = async () => {
     return await Promise.all([
+      // dsh-pet fork: 桌宠侧监听本进程退出，并在其结束后自动恢复原桌宠，
+      // 因此这一项与官方「退出」同义，只是把语义讲清楚（用户是从桌宠的
+      // 模式切换进来的）。
+      MenuItem.new({
+        text: '切回原桌宠',
+        action: () => exit(0),
+      }),
       MenuItem.new({
         text: t('composables.useAppMenu.labels.restartApp'),
         action: relaunch,
